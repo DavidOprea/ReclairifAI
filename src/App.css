@@ -1,95 +1,379 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
+
+:root {
+  --gold-primary: #D4AF37;
+  --gold-secondary: #FFD700;
+  --gold-accent: #F9A602;
+  --dark-bg: #0A0A0A;
+  --dark-card: #1A1A1A;
+  --dark-text: #E5E5E5;
+  --gray: #8C8C8C;
+  --light: #f8f9fa;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  --transition: all 0.3s ease;
 }
 
-.app-container {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #0A0A0A 0%, #1F1F1F 100%);
+  color: var(--dark-text);
+  min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
-  min-height: 100vh;
-  background-color: #f0f4f8;
-  font-family: 'Inter', sans-serif;
-  color: #1a202c;
-  text-align: center;
+  padding: 1rem;
+}
+
+.app-container {
+  width: 100%;
+  max-width: 480px;
+  position: relative;
+}
+
+.help-button-container {
+  position: absolute;
+  top: -0rem;
+  right: -7rem;
+  z-index: 10;
+}
+
+.help-button {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: var(--gold-primary);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: var(--transition);
+  color: #000;
+  box-shadow: var(--shadow);
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.help-button:hover {
+  background: var(--gold-secondary);
+  transform: translateY(-3px) rotate(10deg);
 }
 
 .main-content {
-  padding: 2rem;
-  border-radius: 1rem;
-  background-color: #ffffff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 2.5rem 2rem;
+  border-radius: 1.5rem;
+  background: var(--dark-card);
+  box-shadow: var(--shadow);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2rem;
+  gap: 1.8rem;
   width: 100%;
-  max-width: 24rem;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.main-content::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background: linear-gradient(90deg, var(--gold-primary), var(--gold-secondary), var(--gold-accent));
 }
 
 .title {
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   font-weight: 700;
-  color: #2c5282;
-  margin-top: 0;
-  margin-bottom: 0;
+  background: linear-gradient(90deg, var(--gold-primary), var(--gold-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0.5rem 0;
+  padding-bottom: 1rem;
+  letter-spacing: -0.5px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.subtitle {
+  color: var(--gray);
+  font-size: 1rem;
+  font-weight: 400;
+  text-align: center;
+  margin-top: -1rem;
+  max-width: 300px;
+  line-height: 1.5;
 }
 
 .logo-container {
-  border-radius: 50%;
+  border-radius: 20px;
   overflow: hidden;
-  width: 150px;
-  height: 150px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 160px;
+  height: 160px;
+  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+  transition: var(--transition);
+  border: 3px solid var(--gold-primary);
+  background: #000;
+}
+
+.logo-container:hover {
+  transform: scale(1.05) rotate(2deg);
+  box-shadow: 0 12px 25px rgba(212, 175, 55, 0.4);
 }
 
 .app-logo {
   display: block;
   width: 100%;
   height: 100%;
+  object-fit: cover;
+  filter: sepia(100%) hue-rotate(-10deg) saturate(500%) brightness(0.9);
 }
 
 .button-group {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.2rem;
   width: 100%;
+  margin-top: 0.5rem;
 }
 
 .main-button {
-  padding: 1rem 2rem;
-  font-size: 1.125rem;
+  padding: 1.1rem 2rem;
+  font-size: 1.1rem;
   font-weight: 600;
-  border-radius: 0.5rem;
+  border-radius: 12px;
   border: none;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: var(--transition);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .main-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 }
 
-.primary {
-  background-color: #2563EB;
-  color: white;
+.main-button:active {
+  transform: translateY(0);
 }
 
-.secondary {
-  background-color: #E2E8F0;
-  color: #4A5568;
+.create {
+  background: linear-gradient(135deg, var(--gold-primary) 0%, var(--gold-accent) 100%);
+  color: #000;
 }
 
-/* Responsive design for smaller screens */
+.create:hover {
+  background: linear-gradient(135deg, var(--gold-accent) 0%, var(--gold-secondary) 100%);
+}
+
+.match {
+  background: rgba(212, 175, 55, 0.15);
+  color: var(--gold-secondary);
+  border: 2px solid rgba(212, 175, 55, 0.3);
+}
+
+.match:hover {
+  background: rgba(212, 175, 55, 0.25);
+  border-color: var(--gold-primary);
+  color: var(--gold-primary);
+}
+
+.features {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.feature {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.8rem;
+  color: var(--gray);
+}
+
+.feature i {
+  font-size: 1.2rem;
+  margin-bottom: 0.3rem;
+  color: var(--gold-primary);
+}
+
+/* Animation for logo */
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.logo-container {
+  animation: pulse 4s infinite ease-in-out;
+}
+
+/* Popup Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modal {
+  background: var(--dark-card);
+  border-radius: 16px;
+  width: 90%;
+  max-width: 500px;
+  padding: 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  position: relative;
+  animation: slideUp 0.4s ease forwards;
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+@keyframes slideUp {
+  from { 
+    transform: translateY(50px);
+    opacity: 0;
+  }
+  to { 
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+}
+
+.modal-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  background: linear-gradient(90deg, var(--gold-primary), var(--gold-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.close-button {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--gold-primary);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.close-button:hover {
+  color: var(--gold-secondary);
+  transform: rotate(90deg);
+}
+
+.modal-content {
+  line-height: 1.6;
+}
+
+.modal-section {
+  margin-bottom: 1.5rem;
+}
+
+.modal-section-title {
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: var(--gold-primary);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.modal-section-title i {
+  font-size: 1.2rem;
+}
+
+.modal-section-content {
+  color: var(--dark-text);
+  padding-left: 1.8rem;
+}
+
+/* Responsive design */
 @media (max-width: 600px) {
   .main-content {
-    padding: 1.5rem;
-    border-radius: 0.75rem;
+    padding: 2rem 1.5rem;
   }
+  
   .title {
-    font-size: 2rem;
+    font-size: 2.5rem;
   }
+  
+  .logo-container {
+    width: 140px;
+    height: 140px;
+  }
+  
+  .main-button {
+    padding: 1rem 1.5rem;
+    font-size: 1rem;
+  }
+  
+  .features {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+  
+  .feature {
+    flex: 0 0 calc(50% - 1rem);
+  }
+  
+  .modal {
+    padding: 1.5rem;
+  }
+  
+  .modal-title {
+    font-size: 1.3rem;
+  }
+  
+  .help-button-container {
+    right: -5rem;
+  }
+}
+
+footer {
+  text-align: center;
+  margin-top: 1.5rem;
+  color: rgba(212, 175, 55, 0.6);
+  font-size: 0.8rem;
 }
