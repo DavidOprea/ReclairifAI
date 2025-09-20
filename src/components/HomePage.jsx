@@ -19,7 +19,7 @@ function HomePage() {
       </div>
 
       <div className="main-content">
-        <h1 className="title">Rogue Cite</h1>
+        <h1 className="title">ReclarifAI</h1>
         <p className="subtitle">Create, match, and learn new vocabulary words with ease</p>
         
         <div className="logo-container">

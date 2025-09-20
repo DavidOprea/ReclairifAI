@@ -43,6 +43,8 @@ h1 {
     font-size: 1.1rem;
     opacity: 0.9;
     color: #CFB991;
+    margin: 0 auto;
+    padding-top: 1rem;
 }
 
 .app-content {

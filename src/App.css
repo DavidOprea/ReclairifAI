@@ -328,6 +328,66 @@ body {
   padding-left: 1.8rem;
 }
 
+/* Deck Selection Styles - Each deck on its own row */
+.decks-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 500px;
+}
+
+.deck-row {
+  width: 100%;
+}
+
+.deck-button {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 8px;
+  padding: 1.2rem 1.5rem;
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all 0.2s ease;
+  color: var(--light);
+  width: 100%; /* Make button fill the entire row */
+  text-align: left;
+}
+
+.deck-button:hover {
+  background: rgba(212, 175, 55, 0.15);
+  border-color: var(--gold-primary);
+  transform: translateY(-2px);
+}
+
+.deck-name {
+  font-weight: 500;
+  font-size: 1.1rem;
+  flex: 1;
+}
+
+.deck-cards {
+  color: var(--gold-primary);
+  font-size: 0.9rem;
+  margin-left: 1rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .deck-button {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .deck-cards {
+    align-self: flex-end;
+    margin-left: 0;
+  }
+}
+
 /* Responsive design */
 @media (max-width: 600px) {
   .main-content {

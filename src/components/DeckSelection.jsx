@@ -15,7 +15,7 @@ function DeckSelection() {
   }
 
   const handleBack = () => {
-    navigate(-1)
+    navigate('/')
   }
 
   return (
@@ -33,14 +33,15 @@ function DeckSelection() {
         
         <div className="decks-list">
           {decks.map(deck => (
-            <button
-              key={deck.id}
-              className="deck-button"
-              onClick={() => handleDeckSelect(deck)}
-            >
-              <span className="deck-name">{deck.name}</span>
-              <span className="deck-cards">{deck.cardCount} cards</span>
-            </button>
+            <div key={deck.id} className="deck-row">
+              <button
+                className="deck-button"
+                onClick={() => handleDeckSelect(deck)}
+              >
+                <span className="deck-name">{deck.name}</span>
+                <span className="deck-cards">{deck.cardCount} cards</span>
+              </button>
+            </div>
           ))}
         </div>
       </div>
