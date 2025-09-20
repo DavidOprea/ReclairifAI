@@ -58,7 +58,7 @@ function HomePage() {
       </div>
       
       <footer>
-        &copy; 2025 Rogue Cite • v1.0.0
+        ReclarifAI &copy; 2025 • v1.0.0
       </footer>
     </div>
   )

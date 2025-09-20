@@ -294,7 +294,7 @@ const MatchGame = () => {
       <div className="top-controls">
         <button className="back-button" onClick={handleBack}>
           <i className="fas fa-arrow-left"></i>
-          Back to Decks
+         &nbsp; Back to Decks
         </button>
         <div className="timer-display">
           {formatTime(time)}s

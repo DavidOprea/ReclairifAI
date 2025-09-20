@@ -25,7 +25,7 @@ function DeckSelection() {
         <div className="deck-selection-header">
           <button className="back-button" onClick={handleBack}>
             <i className="fas fa-arrow-left"></i>
-            Back
+           &nbsp; Back
           </button>
           <h2 className="title">Your Flashcard Decks</h2>
           <div style={{width: "100px"}}></div>

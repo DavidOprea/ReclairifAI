@@ -21,14 +21,14 @@ function HelpButton() {
         <div className="modal-overlay" onClick={closeModal}>
           <div className="modal" onClick={(e) => e.stopPropagation()}>
             <div className="modal-header">
-              <h2 className="modal-title">About Rogue Cite</h2>
+              <h2 className="modal-title">About ReclarifAI</h2>
               <button className="close-button" onClick={closeModal}>
                 <i className="fas fa-times"></i>
               </button>
             </div>
             <div className="modal-content">
               <div className="modal-section">
-                <p>Rogue Cite helps you create and manage your own flashcards with AI-powered learning.</p>
+                <p>ReclarifAI helps you create and manage your own flashcards with AI-powered learning.</p>
               </div>
               <div className="modal-section">
                 <h3 className="modal-section-title">

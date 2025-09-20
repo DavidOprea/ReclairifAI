@@ -115,20 +115,20 @@ const VocabularyInput = () => {
       <header>
         <button onClick={handleBack} className="back-button">
           <i className="fas fa-arrow-left"></i>
-          Back
+          &nbsp; Back
         </button>
         <h1>Deck Creator</h1>
-        <p className="subtitle">Create your vocabulary list for enhanced matching</p>
+        <p className="subheading">Create your vocabulary list for enhanced matching</p>
       </header>
       
       <div className="app-content">
         <div className="instructions">
           <h3>How to use this tool</h3>
           <ul>
-            <li>Enter a vocabulary word and its definition in the form below</li>
-            <li>Click "Add to List" to save the word to your vocabulary list</li>
-            <li>Edit or delete items using the action buttons</li>
-            <li>When your list is complete, export it for use in your vocabulary matching game</li>
+            <li>Enter a vocabulary word and its definition in the form below.</li>
+            <li>Click "Add to List" to save the word to your vocabulary list.</li>
+            <li>Edit or delete items using the action buttons.</li>
+            <li>When your list is complete, click the export button!</li>
           </ul>
         </div>
         
@@ -155,7 +155,7 @@ const VocabularyInput = () => {
       </div>
       
       <footer>
-        <p>ReclairifAI &copy; 2025 | Part of the Enhanced Quizlet Matching Project</p>
+        <p>ReclairifAI &copy; 2025</p>
       </footer>
     </div>
   );
