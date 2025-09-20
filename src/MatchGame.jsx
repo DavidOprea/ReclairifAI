@@ -1,7 +1,19 @@
+<<<<<<< Updated upstream
 import React, { useState, useEffect } from 'react';
 import './MatchGame.css';
 
 const MatchGame = () => {
+=======
+import React, { useState, useEffect, useRef } from 'react';
+import './MatchGame.css';
+
+// Import sound effects (make sure these files are in public/sounds/)
+const selectSound = new Audio('/sounds/select.mp3');
+const correctSound = new Audio('/sounds/correct.mp3');
+const incorrectSound = new Audio('/sounds/incorrect.mp3');
+
+const MatchGame = ({ importedPairs = null }) => {
+>>>>>>> Stashed changes
   const defaultPairs = [
     { word1: 'Sex hormone glands', word2: 'Gonad' },
     { word1: 'Brain areas involved in sleep', word2: 'Pons, pituitary gland, pineal gland, thalamus, hypothalamus, SCN' },
@@ -17,12 +29,35 @@ const MatchGame = () => {
   const [time, setTime] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
   const [gameCompleted, setGameCompleted] = useState(false);
+<<<<<<< Updated upstream
   const [isChecking, setIsChecking] = useState(false);
   const [startTime, setStartTime] = useState(0);
 
   useEffect(() => {
     initializeGame(defaultPairs);
   }, []);
+=======
+  const [startTime, setStartTime] = useState(0);
+  const [bestTime, setBestTime] = useState(Infinity);
+  const [isInitialized, setIsInitialized] = useState(false);
+  const gameRef = useRef(null);
+
+  // Load imported pairs or use default
+  const pairsToUse = importedPairs || defaultPairs;
+
+  useEffect(() => {
+    if (!isInitialized) {
+      initializeGame(pairsToUse);
+      setIsInitialized(true);
+    }
+    
+    // Load best time from localStorage
+    const savedBestTime = localStorage.getItem('matchGameBestTime');
+    if (savedBestTime) {
+      setBestTime(parseFloat(savedBestTime));
+    }
+  }, [pairsToUse, isInitialized]);
+>>>>>>> Stashed changes
 
   useEffect(() => {
     let timer;
@@ -37,6 +72,13 @@ const MatchGame = () => {
   useEffect(() => {
     const handleContextMenu = (e) => {
       e.preventDefault();
+<<<<<<< Updated upstream
+=======
+      // Right click to deselect
+      if (selectedCards.length > 0) {
+        setSelectedCards([]);
+      }
+>>>>>>> Stashed changes
     };
 
     const handleSelection = (e) => {
@@ -52,7 +94,11 @@ const MatchGame = () => {
       document.removeEventListener('contextmenu', handleContextMenu);
       document.removeEventListener('selectstart', handleSelection);
     };
+<<<<<<< Updated upstream
   }, []);
+=======
+  }, [selectedCards]);
+>>>>>>> Stashed changes
 
   const initializeGame = (pairs) => {
     const allCards = [];
@@ -81,11 +127,18 @@ const MatchGame = () => {
     setStartTime(Date.now());
     setIsRunning(true);
     setGameCompleted(false);
+<<<<<<< Updated upstream
     setIsChecking(false);
   };
 
   const handleCardClick = (cardId) => {
     if (!isRunning || isChecking || matchedPairs.includes(cardId) || selectedCards.includes(cardId)) {
+=======
+  };
+
+  const handleCardClick = (cardId) => {
+    if (!isRunning || matchedPairs.includes(cardId) || selectedCards.includes(cardId)) {
+>>>>>>> Stashed changes
       return;
     }
 
@@ -93,15 +146,26 @@ const MatchGame = () => {
       return;
     }
 
+<<<<<<< Updated upstream
+=======
+    // Play select sound
+    selectSound.currentTime = 0;
+    selectSound.play().catch(() => {}); // Ignore errors if audio fails
+
+>>>>>>> Stashed changes
     const newSelectedCards = [...selectedCards, cardId];
     setSelectedCards(newSelectedCards);
 
     if (newSelectedCards.length === 2) {
+<<<<<<< Updated upstream
       setIsChecking(true);
       setTimeout(() => {
         checkForMatch(newSelectedCards);
         setIsChecking(false);
       }, 500);
+=======
+      checkForMatch(newSelectedCards);
+>>>>>>> Stashed changes
     }
   };
 
@@ -111,8 +175,16 @@ const MatchGame = () => {
     const secondCard = cards.find(card => card.id === secondId);
 
     if (firstCard && secondCard && firstCard.pairId === secondCard.pairId) {
+<<<<<<< Updated upstream
       setMatchedPairs([...matchedPairs, firstId, secondId]);
       
+=======
+      // Correct match
+      correctSound.currentTime = 0;
+      correctSound.play().catch(() => {});
+      
+      setMatchedPairs(prev => [...prev, firstId, secondId]);
+>>>>>>> Stashed changes
       setCards(prevCards => 
         prevCards.map(card => 
           card.id === firstId || card.id === secondId 
@@ -123,6 +195,7 @@ const MatchGame = () => {
       
       setSelectedCards([]);
       
+<<<<<<< Updated upstream
       if (matchedPairs.length + 2 === cards.length) {
         setIsRunning(false);
         setGameCompleted(true);
@@ -131,6 +204,27 @@ const MatchGame = () => {
       setTimeout(() => {
         setSelectedCards([]);
       }, 1000);
+=======
+      // Check if game is completed
+      if (matchedPairs.length + 2 === cards.length) {
+        setIsRunning(false);
+        setGameCompleted(true);
+        // Save best time
+        const finalTime = (Date.now() - startTime) / 1000;
+        if (finalTime < bestTime) {
+          setBestTime(finalTime);
+          localStorage.setItem('matchGameBestTime', finalTime.toString());
+        }
+      }
+    } else {
+      // Incorrect match
+      incorrectSound.currentTime = 0;
+      incorrectSound.play().catch(() => {});
+      
+      setTimeout(() => {
+        setSelectedCards([]);
+      }, 300); // Short delay for visual feedback
+>>>>>>> Stashed changes
     }
   };
 
@@ -141,18 +235,39 @@ const MatchGame = () => {
   const isCardSelected = (cardId) => selectedCards.includes(cardId);
   const isCardMatched = (cardId) => matchedPairs.includes(cardId);
 
+<<<<<<< Updated upstream
   return (
     <div className="match-game">
       {/* Top Controls */}
       <div className="top-controls">
         <div className="menu-icon">
+=======
+  const handleMainMenu = () => {
+    // This would navigate to main menu - functionality to be implemented
+    console.log("Going to main menu");
+  };
+
+  const handleNewGame = () => {
+    initializeGame(pairsToUse);
+  };
+
+  return (
+    <div className="match-game" ref={gameRef}>
+      {/* Top Controls */}
+      <div className="top-controls">
+        <div className="menu-icon" onClick={handleMainMenu}>
+>>>>>>> Stashed changes
           <span>☰</span>
         </div>
         <div className="timer-display">
           {formatTime(time)}s
         </div>
         <button 
+<<<<<<< Updated upstream
           onClick={() => initializeGame(defaultPairs)} 
+=======
+          onClick={handleNewGame} 
+>>>>>>> Stashed changes
           className="new-game-btn"
         >
           New Game
@@ -164,6 +279,7 @@ const MatchGame = () => {
         <div className="completion-message">
           <div className="completion-content">
             <h2>Game Completed!</h2>
+<<<<<<< Updated upstream
             <p>Time: {formatTime(time)} seconds</p>
             <button 
               onClick={() => initializeGame(defaultPairs)}
@@ -171,11 +287,35 @@ const MatchGame = () => {
             >
               Play Again
             </button>
+=======
+            <p className="final-time">Time: {formatTime(time)} seconds</p>
+            {bestTime < Infinity && (
+              <p className="best-time">Best Time: {formatTime(bestTime)} seconds</p>
+            )}
+            <div className="completion-buttons">
+              <button 
+                onClick={handleNewGame}
+                className="play-again-btn"
+              >
+                Play Again
+              </button>
+              <button 
+                onClick={handleMainMenu}
+                className="main-menu-btn"
+              >
+                Main Menu
+              </button>
+            </div>
+>>>>>>> Stashed changes
           </div>
         </div>
       )}
 
+<<<<<<< Updated upstream
       {/* Cards Grid */}
+=======
+      {/* Cards Grid - Fixed 4x3 layout */}
+>>>>>>> Stashed changes
       <div className="cards-container">
         <div className="cards-grid">
           {cards.map((card) => (
