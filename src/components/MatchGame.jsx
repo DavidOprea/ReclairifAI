@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import './MatchGame.css';
 
-// Import sound effects (you'll need to add these sound files to your public/sounds folder)
+//import sfx
 const selectSound = new Audio('/sounds/select.mp3');
 const correctSound = new Audio('/sounds/correct.mp3');
 const incorrectSound = new Audio('/sounds/incorrect.mp3');
@@ -10,7 +10,7 @@ const finishedSound = new Audio('/sounds/finished.mp3');
 const confettiSound = new Audio('/sounds/confetti.mp3');
 
 const MatchGame = () => {
-  const { deckId } = useParams(); // Get the deck ID from the URL
+  const { deckId } = useParams(); //get deck id from url
   const navigate = useNavigate();
   
   // Sample deck data - in a real app, you'd fetch this based on deckId

@@ -338,6 +338,65 @@ button:focus {
     animation: spin 1s ease-in-out infinite;
 }
 
+/* Deck Management Styles */
+.deck-management {
+    margin: 25px 0;
+    padding: 20px;
+    background: #FFF8E1;
+    border-radius: 10px;
+    border-left: 4px solid #CFB991;
+}
+
+.deck-save-form {
+    display: flex;
+    gap: 15px;
+    align-items: flex-end;
+}
+
+@media (max-width: 768px) {
+    .deck-save-form {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+.saved-decks {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 2px solid #CFB991;
+}
+
+.decks-list {
+    margin: 15px 0;
+}
+
+.deck-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    margin-bottom: 10px;
+    background: #FFF8E1;
+    border-radius: 8px;
+    border-left: 4px solid #CFB991;
+}
+
+.deck-info h4 {
+    margin: 0 0 5px 0;
+    color: #000000;
+}
+
+.deck-info p {
+    margin: 0;
+    color: #666;
+    font-size: 0.9rem;
+}
+
+.deck-actions {
+    display: flex;
+    gap: 10px;
+}
+
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
