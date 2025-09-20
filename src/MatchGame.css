@@ -31,6 +31,37 @@ body {
   flex-direction: column;
   background: #0d1117;
   position: relative;
+  overflow: hidden;
+}
+
+/* Confetti - Original working style */
+.confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 2000;
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  opacity: 0;
+  animation: confetti-fall 3s linear forwards;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
 }
 
 /* Top Controls */
@@ -67,16 +98,46 @@ body {
   font-size: 1.4rem;
   font-weight: 600;
   color: #ffd700;
-  background: rgba(255, 215, 0, 0.1);
-  padding: 12px 24px;
-  border-radius: 8px;
-  border: 2px solid #ffd700;
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  min-width: 120px;
   text-align: center;
+  font-variant-numeric: tabular-nums;
+  min-width: 100px;
+}
+
+.right-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.mute-btn {
+  padding: 10px;
+  border: 2px solid #ffd700;
+  border-radius: 8px;
+  background: transparent;
+  color: #ffd700;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mute-btn:hover {
+  background: #ffd700;
+  color: #000;
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
 }
 
 .new-game-btn {
@@ -89,23 +150,19 @@ body {
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
-  position: absolute;
-  right: 30px;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 .new-game-btn:hover {
   background: #ffd700;
   color: #000;
-  transform: translateY(-50%) translateY(-2px);
+  transform: translateY(-2px);
   box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
 }
 
 /* Cards Container */
 .cards-container {
   flex: 1;
-  padding: 20px;
+  padding: 30px 20px;
   overflow: hidden;
   background: #0d1117;
   display: flex;
@@ -117,24 +174,24 @@ body {
   display: grid;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-template-rows: repeat(3, minmax(0, 1fr));
-  gap: 15px;
-  width: 100%;
-  max-width: 1000px;
-  max-height: 600px;
+  gap: 20px;
+  width: 90%;
+  max-width: 1400px;
+  max-height: 700px;
   margin: 0 auto;
   justify-items: center;
   align-items: center;
 }
 
-/* Cards - Perfect Squares */
+/* Cards - Rectangular to fill horizontal space */
 .card {
   background: #21262d;
   border: 2px solid #30363d;
   border-radius: 12px;
-  padding: 15px;
+  padding: 20px;
   cursor: pointer;
   transition: all 0.2s ease;
-  aspect-ratio: 1;
+  aspect-ratio: 4/3;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -142,7 +199,7 @@ body {
   position: relative;
   overflow: hidden;
   width: 100%;
-  max-width: 200px;
+  max-width: 280px;
   min-height: 120px;
 }
 
@@ -166,7 +223,7 @@ body {
 }
 
 .card-content {
-  font-size: 0.95rem;
+  font-size: 1.1rem;
   line-height: 1.4;
   color: #ffffff;
   font-weight: 500;
@@ -186,7 +243,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 3000;
   backdrop-filter: blur(5px);
 }
 
@@ -216,8 +273,21 @@ body {
 .best-time {
   color: #ffd700;
   font-size: 1.2rem;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   font-weight: 500;
+}
+
+.new-best {
+  color: #ffd700;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-bottom: 30px;
+  animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
 }
 
 .completion-buttons {
@@ -247,20 +317,38 @@ body {
 }
 
 /* Responsive design */
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
   .cards-grid {
-    gap: 12px;
-    max-height: 500px;
+    gap: 18px;
+    max-width: 1200px;
   }
   
   .card {
-    max-width: 180px;
+    max-width: 250px;
     min-height: 110px;
-    padding: 12px;
+    padding: 18px;
   }
   
   .card-content {
-    font-size: 0.85rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .cards-grid {
+    gap: 16px;
+    max-height: 600px;
+  }
+  
+  .card {
+    max-width: 220px;
+    min-height: 100px;
+    padding: 16px;
+    aspect-ratio: 1;
+  }
+  
+  .card-content {
+    font-size: 0.95rem;
   }
 }
 
@@ -277,58 +365,42 @@ body {
   
   .timer-display {
     font-size: 1.1rem;
-    padding: 10px 20px;
-    min-width: 100px;
+    min-width: 90px;
+  }
+  
+  .right-controls {
+    right: 20px;
+    gap: 10px;
+  }
+  
+  .mute-btn {
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
   }
   
   .new-game-btn {
     padding: 10px 20px;
     font-size: 0.9rem;
-    right: 20px;
+  }
+  
+  .cards-container {
+    padding: 25px 15px;
   }
   
   .cards-grid {
-    gap: 10px;
-    max-height: 450px;
+    gap: 14px;
+    max-height: 550px;
   }
   
   .card {
-    max-width: 160px;
-    min-height: 100px;
-    padding: 10px;
+    max-width: 180px;
+    min-height: 90px;
+    padding: 14px;
   }
   
   .card-content {
-    font-size: 0.8rem;
-  }
-  
-  .completion-content {
-    padding: 30px;
-    min-width: 350px;
-    margin: 0 20px;
-  }
-  
-  .completion-content h2 {
-    font-size: 1.8rem;
-  }
-  
-  .final-time {
-    font-size: 1.2rem;
-  }
-  
-  .best-time {
-    font-size: 1.1rem;
-  }
-  
-  .completion-buttons {
-    flex-direction: column;
-    gap: 12px;
-  }
-  
-  .play-again-btn, .main-menu-btn {
-    padding: 12px 24px;
-    font-size: 1rem;
-    min-width: 120px;
+    font-size: 0.9rem;
   }
 }
 
@@ -345,30 +417,42 @@ body {
   
   .timer-display {
     font-size: 1rem;
-    padding: 8px 16px;
-    min-width: 90px;
+    min-width: 80px;
+  }
+  
+  .right-controls {
+    right: 15px;
+    gap: 8px;
+  }
+  
+  .mute-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+    padding: 8px;
   }
   
   .new-game-btn {
     padding: 8px 16px;
     font-size: 0.8rem;
-    right: 15px;
+  }
+  
+  .cards-container {
+    padding: 20px 10px;
   }
   
   .cards-grid {
-    gap: 8px;
-    max-height: 400px;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+    max-height: 500px;
   }
   
   .card {
     max-width: 140px;
-    min-height: 90px;
-    padding: 8px;
+    min-height: 80px;
+    padding: 12px;
   }
   
   .card-content {
-    font-size: 0.75rem;
-    line-height: 1.3;
+    font-size: 0.8rem;
   }
 }

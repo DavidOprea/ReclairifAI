@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './MatchGame.css';
 
-// Import sound effects (make sure these files are in public/sounds/)
+// Import sound effects
 const selectSound = new Audio('/sounds/select.mp3');
 const correctSound = new Audio('/sounds/correct.mp3');
 const incorrectSound = new Audio('/sounds/incorrect.mp3');
+const finishedSound = new Audio('/sounds/finished.mp3');
+const confettiSound = new Audio('/sounds/confetti.mp3');
 
-const MatchGame = ({ importedPairs = null }) => {
+const MatchGame = ({ importedJson = null }) => {
   const defaultPairs = [
     { word1: 'Sex hormone glands', word2: 'Gonad' },
     { word1: 'Brain areas involved in sleep', word2: 'Pons, pituitary gland, pineal gland, thalamus, hypothalamus, SCN' },
@@ -23,23 +25,40 @@ const MatchGame = ({ importedPairs = null }) => {
   const [isRunning, setIsRunning] = useState(false);
   const [gameCompleted, setGameCompleted] = useState(false);
   const [startTime, setStartTime] = useState(0);
-  const [bestTime, setBestTime] = useState(Infinity);
+  const [sessionBestTime, setSessionBestTime] = useState(null);
   const [isInitialized, setIsInitialized] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
   const gameRef = useRef(null);
 
-  // Load imported pairs or use default
-  const pairsToUse = importedPairs || defaultPairs;
+  // Convert JSON format to pairs format
+  const convertJsonToPairs = (jsonData) => {
+    return jsonData.map(item => ({
+      word1: item.word,
+      word2: item.definition
+    }));
+  };
+
+  // Get pairs to use - either from imported JSON or default
+  const getPairsToUse = () => {
+    if (importedJson) {
+      return convertJsonToPairs(importedJson);
+    }
+    return defaultPairs;
+  };
+
+  const pairsToUse = getPairsToUse();
 
   useEffect(() => {
     if (!isInitialized) {
       initializeGame(pairsToUse);
       setIsInitialized(true);
     }
-    
-    // Load best time from localStorage
-    const savedBestTime = localStorage.getItem('matchGameBestTime');
-    if (savedBestTime) {
-      setBestTime(parseFloat(savedBestTime));
+
+    // Load mute setting from localStorage
+    const savedMuteSetting = localStorage.getItem('matchGameMuted');
+    if (savedMuteSetting !== null) {
+      setIsMuted(savedMuteSetting === 'true');
     }
   }, [pairsToUse, isInitialized]);
 
@@ -77,6 +96,19 @@ const MatchGame = ({ importedPairs = null }) => {
     };
   }, [selectedCards]);
 
+  const playSound = (sound) => {
+    if (!isMuted) {
+      sound.currentTime = 0;
+      sound.play().catch(() => {});
+    }
+  };
+
+  const toggleMute = () => {
+    const newMutedState = !isMuted;
+    setIsMuted(newMutedState);
+    localStorage.setItem('matchGameMuted', newMutedState.toString());
+  };
+
   const initializeGame = (pairs) => {
     const allCards = [];
     
@@ -104,6 +136,7 @@ const MatchGame = ({ importedPairs = null }) => {
     setStartTime(Date.now());
     setIsRunning(true);
     setGameCompleted(false);
+    setShowConfetti(false);
   };
 
   const handleCardClick = (cardId) => {
@@ -115,9 +148,7 @@ const MatchGame = ({ importedPairs = null }) => {
       return;
     }
 
-    // Play select sound
-    selectSound.currentTime = 0;
-    selectSound.play().catch(() => {}); // Ignore errors if audio fails
+    playSound(selectSound);
 
     const newSelectedCards = [...selectedCards, cardId];
     setSelectedCards(newSelectedCards);
@@ -134,10 +165,10 @@ const MatchGame = ({ importedPairs = null }) => {
 
     if (firstCard && secondCard && firstCard.pairId === secondCard.pairId) {
       // Correct match
-      correctSound.currentTime = 0;
-      correctSound.play().catch(() => {});
+      playSound(correctSound);
       
-      setMatchedPairs(prev => [...prev, firstId, secondId]);
+      const newMatchedPairs = [...matchedPairs, firstId, secondId];
+      setMatchedPairs(newMatchedPairs);
       setCards(prevCards => 
         prevCards.map(card => 
           card.id === firstId || card.id === secondId 
@@ -149,24 +180,37 @@ const MatchGame = ({ importedPairs = null }) => {
       setSelectedCards([]);
       
       // Check if game is completed
-      if (matchedPairs.length + 2 === cards.length) {
-        setIsRunning(false);
-        setGameCompleted(true);
-        // Save best time
+      if (newMatchedPairs.length === cards.length) {
         const finalTime = (Date.now() - startTime) / 1000;
-        if (finalTime < bestTime) {
-          setBestTime(finalTime);
-          localStorage.setItem('matchGameBestTime', finalTime.toString());
+        setIsRunning(false);
+        
+        // Check for new session best time
+        const isNewBest = sessionBestTime === null || finalTime < sessionBestTime;
+        
+        if (isNewBest) {
+          setSessionBestTime(finalTime);
+          setShowConfetti(true);
+          
+          // Play sounds in sequence
+          playSound(finishedSound);
+          finishedSound.onended = () => {
+            playSound(confettiSound);
+            // Keep confetti visible for 5 seconds
+            setTimeout(() => setShowConfetti(false), 5000);
+          };
+        } else {
+          playSound(finishedSound);
         }
+        
+        setGameCompleted(true);
       }
     } else {
       // Incorrect match
-      incorrectSound.currentTime = 0;
-      incorrectSound.play().catch(() => {});
+      playSound(incorrectSound);
       
       setTimeout(() => {
         setSelectedCards([]);
-      }, 300); // Short delay for visual feedback
+      }, 300);
     }
   };
 
@@ -178,7 +222,6 @@ const MatchGame = ({ importedPairs = null }) => {
   const isCardMatched = (cardId) => matchedPairs.includes(cardId);
 
   const handleMainMenu = () => {
-    // This would navigate to main menu - functionality to be implemented
     console.log("Going to main menu");
   };
 
@@ -188,6 +231,23 @@ const MatchGame = ({ importedPairs = null }) => {
 
   return (
     <div className="match-game" ref={gameRef}>
+      {/* Confetti Effect */}
+      {showConfetti && (
+        <div className="confetti-container">
+          {Array.from({ length: 100 }, (_, i) => (
+            <div
+              key={i}
+              className="confetti"
+              style={{
+                left: `${Math.random() * 100}%`,
+                animationDelay: `${Math.random() * 2}s`,
+                backgroundColor: `hsl(${Math.random() * 720}, 100%, 100%)`
+              }}
+            />
+          ))}
+        </div>
+      )}
+
       {/* Top Controls */}
       <div className="top-controls">
         <div className="menu-icon" onClick={handleMainMenu}>
@@ -196,12 +256,14 @@ const MatchGame = ({ importedPairs = null }) => {
         <div className="timer-display">
           {formatTime(time)}s
         </div>
-        <button 
-          onClick={handleNewGame} 
-          className="new-game-btn"
-        >
-          New Game
-        </button>
+        <div className="right-controls">
+          <button onClick={toggleMute} className="mute-btn">
+            {isMuted ? '🔇' : '🔊'}
+          </button>
+          <button onClick={handleNewGame} className="new-game-btn">
+            New Game
+          </button>
+        </div>
       </div>
 
       {/* Completion Message */}
@@ -210,20 +272,15 @@ const MatchGame = ({ importedPairs = null }) => {
           <div className="completion-content">
             <h2>Game Completed!</h2>
             <p className="final-time">Time: {formatTime(time)} seconds</p>
-            {bestTime < Infinity && (
-              <p className="best-time">Best Time: {formatTime(bestTime)} seconds</p>
+            {sessionBestTime !== null && (
+              <p className="best-time">Session Best: {formatTime(sessionBestTime)} seconds</p>
             )}
+            {showConfetti && <p className="new-best">🎉 New Session Best! 🎉</p>}
             <div className="completion-buttons">
-              <button 
-                onClick={handleNewGame}
-                className="play-again-btn"
-              >
+              <button onClick={handleNewGame} className="play-again-btn">
                 Play Again
               </button>
-              <button 
-                onClick={handleMainMenu}
-                className="main-menu-btn"
-              >
+              <button onClick={handleMainMenu} className="main-menu-btn">
                 Main Menu
               </button>
             </div>
@@ -231,7 +288,7 @@ const MatchGame = ({ importedPairs = null }) => {
         </div>
       )}
 
-      {/* Cards Grid - Fixed 4x3 layout */}
+      {/* Cards Grid */}
       <div className="cards-container">
         <div className="cards-grid">
           {cards.map((card) => (
