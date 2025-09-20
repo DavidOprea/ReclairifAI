@@ -1,0 +1,341 @@
+/* VocabularyInput.css - Purdue University Theme */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #000000 0%, #2a2a2a 100%);
+    color: #333;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.container {
+    max-width: 900px;
+    width: 100%;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+header {
+    background: #000000;
+    color: #CFB991;
+    padding: 25px;
+    text-align: center;
+    border-bottom: 5px solid #CFB991;
+}
+
+h1 {
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    color: #CFB991;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+    color: #CFB991;
+}
+
+.app-content {
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+}
+
+.instructions {
+    background: #FFF8E1;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 25px;
+    border-left: 4px solid #CFB991;
+}
+
+.instructions h3 {
+    color: #000000;
+    margin-bottom: 10px;
+}
+
+.instructions ul {
+    padding-left: 20px;
+    margin: 10px 0;
+}
+
+.instructions li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+    color: #333;
+}
+
+.form-container {
+    margin-bottom: 25px;
+}
+
+.vocab-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 15px;
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+    }
+}
+
+.input-group {
+    flex: 1;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.input-group input, .input-group textarea {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus, .input-group textarea:focus {
+    outline: none;
+    border-color: #CFB991;
+    box-shadow: 0 0 0 2px rgba(207, 185, 145, 0.2);
+}
+
+.input-group textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+.button-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+button {
+    padding: 14px 25px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background: #000000;
+    color: #CFB991;
+    border: 2px solid #CFB991;
+}
+
+.btn-primary:hover {
+    background: #CFB991;
+    color: #000000;
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background: #FFF8E1;
+    color: #000000;
+    border: 2px solid #CFB991;
+}
+
+.btn-secondary:hover {
+    background: #CFB991;
+    color: #000000;
+}
+
+.vocab-list {
+    margin-top: 30px;
+}
+
+.vocab-list h3 {
+    margin-bottom: 20px;
+    color: #000000;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #CFB991;
+}
+
+.vocab-item {
+    background: #FFF8E1;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    border-left: 4px solid #CFB991;
+}
+
+.vocab-content {
+    flex: 1;
+}
+
+.vocab-word {
+    font-weight: 700;
+    font-size: 1.2rem;
+    color: #000000;
+    margin-bottom: 8px;
+}
+
+.vocab-def {
+    color: #555;
+    line-height: 1.5;
+}
+
+.vocab-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-icon {
+    background: transparent;
+    color: #777;
+    padding: 8px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-icon:hover {
+    background: #CFB991;
+    color: #000000;
+}
+
+.empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: #777;
+}
+
+.empty-state i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: #CFB991;
+}
+
+.empty-state p {
+    font-size: 1.1rem;
+    color: #000000;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #CFB991;
+    background: #000000;
+    font-size: 0.9rem;
+}
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 15px 25px;
+    border-radius: 8px;
+    background: #000000;
+    color: #CFB991;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    transform: translateX(100%);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    border: 2px solid #CFB991;
+}
+
+.notification.show {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* Form focus states */
+.input-group input:focus, 
+.input-group textarea:focus {
+    border-color: #CFB991;
+    box-shadow: 0 0 0 3px rgba(207, 185, 145, 0.3);
+}
+
+/* Button focus states */
+button:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(207, 185, 145, 0.5);
+}
+
+/* Animation for buttons */
+@keyframes purdue-gold-glow {
+    0% { box-shadow: 0 0 5px rgba(207, 185, 145, 0.5); }
+    50% { box-shadow: 0 0 20px rgba(207, 185, 145, 0.8); }
+    100% { box-shadow: 0 0 5px rgba(207, 185, 145, 0.5); }
+}
+
+.btn-primary:focus {
+    animation: purdue-gold-glow 2s infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+    .container {
+        border-radius: 0;
+    }
+    
+    .app-content {
+        padding: 15px;
+    }
+    
+    .button-group {
+        flex-direction: column;
+    }
+    
+    button {
+        width: 100%;
+    }
+}
+
+/* Loading animation for submit button */
+.btn-primary.loading {
+    position: relative;
+    color: transparent;
+}
+
+.btn-primary.loading::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin: -10px 0 0 -10px;
+    border: 3px solid rgba(207, 185, 145, 0.3);
+    border-radius: 50%;
+    border-top-color: #CFB991;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
