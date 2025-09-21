@@ -129,6 +129,7 @@ h1 {
   border-radius: 15px;
   border-left: 6px solid var(--gold-primary);
   backdrop-filter: blur(10px);
+  width: 90%;
 }
 
 .instructions h3 {
@@ -197,7 +198,7 @@ h1 {
 }
 
 .input-group input, .input-group textarea {
-  width: 100%;
+  width: 188%;
   padding: 1rem 1.25rem;
   border: 2px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius);
@@ -285,7 +286,7 @@ button {
 
 .vocab-item {
   background: rgba(255, 255, 255, 0.05);
-  padding: 1.5rem;
+  padding: 1rem;
   border-radius: var(--radius);
   margin-bottom: 1rem;
   display: flex;
@@ -294,6 +295,7 @@ button {
   box-shadow: var(--shadow);
   border: 1px solid rgba(212, 175, 55, 0.2);
   transition: var(--transition);
+  width: 90%;
 }
 
 .vocab-item:hover {
@@ -461,11 +463,15 @@ button:focus {
 
 /* Deck Management Styles */
 .deck-management {
-    margin: 25px 0;
-    padding: 20px;
-    background: #FFF8E1;
-    border-radius: 10px;
-    border-left: 4px solid #ffa51f;
+    width: 90%;
+    padding: 1rem 1.25rem;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius);
+    font-size: 1rem;
+    transition: var(--transition);
+    background: rgba(255, 255, 255, 0.05);
+    color: var(--dark-text);
+    font-family: 'Poppins', sans-serif;
 }
 
 .deck-save-form {
@@ -474,6 +480,55 @@ button:focus {
     align-items: flex-end;
 }
 
+.deck-item {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 1rem;
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+  display: flex;
+  margin-left: -28px;
+  justify-content: space-between;
+  align-items: flex-start;
+  box-shadow: var(--shadow);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  transition: var(--transition);
+  width: 100%;
+}
+
+.deck-item:hover {
+  background: rgba(212, 175, 55, 0.1);
+  border-color: var(--gold-primary);
+  transform: translateY(-2px);
+}
+
+.saved-decks {
+  color: var(--dark-text);
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-top: .5rem;
+  max-width: 500px;
+  justify-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+.decks-list {
+  color: var(--dark-text);
+  font-size: 1.1rem;
+  font-weight: 400;
+  margin-top: 0.5rem;
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.5;
+  opacity: 0.9;
+}
+
+.deck-actions {
+  display: flex;
+}
 /* Help Button */
 .help-button-container {
   position: absolute;

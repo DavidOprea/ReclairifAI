@@ -186,7 +186,7 @@ const VocabularyInput = () => {
         />
 
   <div className="deck-management">
-    <h3>Save Your Deck</h3>
+    <h3>Name Your Deck</h3>
     <div className="deck-save-form">
         <div className="input-group">
             <label htmlFor="deckName">Deck Name (optional)</label>
