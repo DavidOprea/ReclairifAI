@@ -20,10 +20,10 @@ const MatchGame = () => {
   const location = useLocation(); //get location to access passed state
   const navigate = useNavigate();
   
-  // Get the deck data passed from DeckSelection
+  //get the deck data passed from DeckSelection
   const deckFromState = location.state?.deck;
   
-  // If no deck was passed, try to get it from localStorage
+  //if no deck was passed, try to get it from localStorage
   const getDeckFromStorage = () => {
     try {
       const savedDecks = localStorage.getItem('vocabularyDecks');
@@ -52,29 +52,29 @@ const MatchGame = () => {
   const [showConfetti, setShowConfetti] = useState(false);
   const gameRef = useRef(null);
 
-  // Add a back button handler
+  //add a back button handler
   const handleBack = () => {
-    navigate('/decks'); // Go back to deck selection
+    navigate('/decks'); //go back to deck selection
   };
 
-  // Get a random subset of vocabulary items (5-10 items)
+  //get a random subset of vocabulary items (5-10 items)
   const getRandomVocabularySubset = (vocabulary, minItems = 5, maxItems = 10) => {
     if (!vocabulary || vocabulary.length === 0) return [];
     
-    // Shuffle the vocabulary array
+    //shuffle the vocabulary array
     const shuffled = [...vocabulary].sort(() => Math.random() - 0.5);
     
-    // Determine how many items to use (between min and max, but not more than available)
+    //determine how many items to use (between min and max, but not more than available)
     const itemCount = Math.min(
       Math.max(minItems, Math.floor(Math.random() * maxItems) + 1),
       vocabulary.length
     );
     
-    // Return the random subset
+    //return the random subset
     return shuffled.slice(0, itemCount);
   };
 
-  // Convert deck data to pairs format
+  //convert deck data to pairs format
   const convertDeckToPairs = (vocabulary) => {
     return vocabulary.map(item => ({
       word1: item.word,
@@ -84,14 +84,14 @@ const MatchGame = () => {
 
   useEffect(() => {
     if (!isInitialized && currentDeck) {
-      // Get random subset of vocabulary
+      //get random subset of vocabulary
       const randomVocabulary = getRandomVocabularySubset(currentDeck.vocabulary);
       const pairs = convertDeckToPairs(randomVocabulary);
       initializeGame(pairs);
       setIsInitialized(true);
     }
 
-    // Load mute setting from localStorage
+    //load mute setting from localStorage
     const savedMuteSetting = localStorage.getItem('matchGameMuted');
     if (savedMuteSetting !== null) {
       setIsMuted(savedMuteSetting === 'true');
@@ -111,7 +111,7 @@ const MatchGame = () => {
   useEffect(() => {
     const handleContextMenu = (e) => {
       e.preventDefault();
-      // Right click to deselect
+      //right click to deselect
       if (selectedCards.length > 0) {
         setSelectedCards([]);
       }
@@ -200,7 +200,7 @@ const MatchGame = () => {
     const secondCard = cards.find(card => card.id === secondId);
 
     if (firstCard && secondCard && firstCard.pairId === secondCard.pairId) {
-      // Correct match
+      //correct match!
       playSound(correctSound);
       
       const newMatchedPairs = [...matchedPairs, firstId, secondId];
@@ -215,23 +215,23 @@ const MatchGame = () => {
       
       setSelectedCards([]);
       
-      // Check if game is completed
+      //check if game is completed
       if (newMatchedPairs.length === cards.length) {
         const finalTime = (Date.now() - startTime) / 1000;
         setIsRunning(false);
         
-        // Check for new session best time
+        //check for new session best time
         const isNewBest = sessionBestTime === null || finalTime < sessionBestTime;
         
         if (isNewBest) {
           setSessionBestTime(finalTime);
           setShowConfetti(true);
           
-          // Play sounds in sequence
+          //play sounds in sequence
           playSound(finishedSound);
           finishedSound.onended = () => {
             playSound(confettiSound);
-            // Keep confetti visible for 5 seconds
+            //keep confetti visible for 5 seconds
             setTimeout(() => setShowConfetti(false), 5000);
           };
         } else {
@@ -241,7 +241,7 @@ const MatchGame = () => {
         setGameCompleted(true);
       }
     } else {
-      // Incorrect match
+      //incorrect match
       playSound(incorrectSound);
       
       setTimeout(() => {
@@ -258,19 +258,19 @@ const MatchGame = () => {
   const isCardMatched = (cardId) => matchedPairs.includes(cardId);
 
   const handleMainMenu = () => {
-    navigate('/'); // Navigate to home page
+    navigate('/'); //navigate to home page
   };
 
   const handleNewGame = () => {
     if (currentDeck) {
-      // Get a new random subset of vocabulary for each new game
+      //get a new random subset of vocabulary for each new game
       const randomVocabulary = getRandomVocabularySubset(currentDeck.vocabulary);
       const pairs = convertDeckToPairs(randomVocabulary);
       initializeGame(pairs);
     }
   };
 
-  // Show loading state if deck is not available
+  //show loading state if deck is not available
   if (!currentDeck) {
     return (
       <div className="match-game">
@@ -293,7 +293,7 @@ const MatchGame = () => {
 
   return (
     <div className="match-game" ref={gameRef}>
-      {/* Confetti Effect */}
+      {/*Confetti Effect*/}
       {showConfetti && (
         <div className="confetti-container">
           {Array.from({ length: 100 }, (_, i) => (
@@ -310,7 +310,7 @@ const MatchGame = () => {
         </div>
       )}
 
-      {/* Top Controls */}
+      {/*Top Controls*/}
       <div className="top-controls">
         <button className="back-button" onClick={handleBack}>
           <i className="fas fa-arrow-left"></i>
@@ -329,14 +329,14 @@ const MatchGame = () => {
         </div>
       </div>
 
-      {/* Game Header */}
+      {/*Game Header*/}
       <div className="game-header">
         <h1>Match Game</h1>
         <p className="deck-name">Playing: {currentDeck.name}</p>
         <p className="deck-info">{cards.length / 2} pairs • From your vocabulary deck</p>
       </div>
 
-      {/* Completion Message */}
+      {/*Completion Message*/}
       {gameCompleted && (
         <div className="completion-message">
           <div className="completion-content">
@@ -358,7 +358,7 @@ const MatchGame = () => {
         </div>
       )}
 
-      {/* Cards Grid */}
+      {/*Cards Grid*/}
       <div className="cards-container">
         <div className="cards-grid">
           {cards.map((card) => (

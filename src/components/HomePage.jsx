@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import HelpButton from './HelpButton'
 
 function HomePage() {
@@ -9,7 +9,7 @@ function HomePage() {
   }
 
   const handleCreateClick = () => {
-    navigate('/create') // Navigate to VocabularyInput page
+    navigate('/create') //nav to VocabularyInput page
   }
 
   return (

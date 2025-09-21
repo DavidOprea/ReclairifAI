@@ -1,6 +1,6 @@
-import { useNavigate } from 'react-router-dom'
+import {useNavigate} from 'react-router-dom'
 import HelpButton from './HelpButton'
-import { useEffect, useState } from 'react'
+import {useEffect, useState} from 'react'
 
 function DeckSelection() {
   const navigate = useNavigate()
@@ -26,9 +26,9 @@ function DeckSelection() {
     setProcessingDeck(deck.id)
     
     try {
-      // Add a timeout to prevent hanging
+      //add timeout to prevent hanging
       const controller = new AbortController()
-      const timeoutId = setTimeout(() => controller.abort(), 10000) // 10 second timeout
+      const timeoutId = setTimeout(() => controller.abort(), 10000) //10s
       
       const response = await fetch('http://localhost:5000/api/process-vocabulary', {
         method: 'POST',
@@ -49,10 +49,10 @@ function DeckSelection() {
         const result = await response.json()
         console.log('AI processing result:', result)
         
-        // Store the processed deck ID for the game to use
+        //store processed deck id
         localStorage.setItem('lastProcessedDeckId', result.deckId)
         
-        // Navigate to the game with the processed deck
+        //navigate to the game with the processed deck
         navigate(`/match/${deck.id}`, { 
           state: { 
             deck: {
@@ -66,12 +66,12 @@ function DeckSelection() {
         })
       } else {
         console.error('AI processing failed:', response.status)
-        // Fallback: navigate without AI processing
+        //fallback: navigate without AI processing
         navigate(`/match/${deck.id}`, { state: { deck } })
       }
     } catch (error) {
       console.error('Error processing vocabulary:', error)
-      // Fallback: navigate without AI processing
+      //fallback: navigate without AI processing
       navigate(`/match/${deck.id}`, { state: { deck } })
     } finally {
       setIsProcessing(false)
@@ -80,13 +80,13 @@ function DeckSelection() {
   }
 
   const handleDeckSelect = async (deck) => {
-    // Check if we should use AI processing (you can add a toggle for this)
-    const useAIProcessing = true; // Set this based on user preference
+    //check if we should use AI processing
+    const useAIProcessing = true;
     
     if (useAIProcessing && deck.vocabulary && deck.vocabulary.length > 0) {
       await processVocabularyWithAI(deck)
     } else {
-      // Navigate directly without AI processing
+      //navigate directly without AI processing
       navigate(`/match/${deck.id}`, { state: { deck } })
     }
   }
@@ -96,7 +96,7 @@ function DeckSelection() {
   }
 
   const handleDeleteDeck = (deckId, event) => {
-    event.stopPropagation() // Prevent triggering the deck selection
+    event.stopPropagation() //prevent triggering the deck selection
     if (window.confirm('Are you sure you want to delete this deck?')) {
       const updatedDecks = decks.filter(deck => deck.id !== deckId)
       setDecks(updatedDecks)

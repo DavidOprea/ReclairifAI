@@ -1,4 +1,4 @@
-/* Reset and base styles */
+/*reset and base styles*/
 * {
   margin: 0;
   padding: 0;
@@ -34,7 +34,7 @@ body {
   overflow: hidden;
 }
 
-/* Confetti - Original working style */
+/*Confetti - Original working style*/
 .confetti-container {
   position: fixed;
   top: 0;
@@ -64,7 +64,7 @@ body {
   }
 }
 
-/* Top Controls */
+/*Top Controls*/
 .top-controls {
   padding: 20px 30px;
   display: flex;
@@ -159,7 +159,7 @@ body {
   box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
 }
 
-/* Cards Container */
+/*cards container*/
 .cards-container {
   flex: 1;
   padding: 30px 20px;
@@ -183,7 +183,7 @@ body {
   align-items: center;
 }
 
-/* Cards - Rectangular to fill horizontal space */
+/*Cards - Rectangular to fill horizontal space*/
 .card {
   background: #21262d;
   border: 2px solid #30363d;
@@ -232,7 +232,7 @@ body {
   overflow-wrap: break-word;
 }
 
-/* Completion Message */
+/*Completion Message*/
 .completion-message {
   position: fixed;
   top: 0;
@@ -316,7 +316,7 @@ body {
   box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
 }
 
-/* Responsive design */
+/*Responsive design*/
 @media (max-width: 1200px) {
   .cards-grid {
     gap: 18px;

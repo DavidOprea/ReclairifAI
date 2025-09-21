@@ -26,9 +26,9 @@ const VocabularyInput = () => {
   
   const navigate = useNavigate();
 
-  // Add a back button handler
+  //add a back button handler
   const handleBack = () => {
-    navigate(-1); // Go back to previous page
+    navigate(-1); //go back to previous page
   };
   
   const handleSubmit = (e) => {
@@ -40,11 +40,11 @@ const VocabularyInput = () => {
     }
     
     if (editIndex === -1) {
-      // Add new item
+      //add new item
       setVocabularyList([...vocabularyList, { word, definition }]);
       showNotification('Vocabulary item added successfully!');
     } else {
-      // Update existing item
+      //update existing item
       const updatedList = [...vocabularyList];
       updatedList[editIndex] = { word, definition };
       setVocabularyList(updatedList);
@@ -52,7 +52,7 @@ const VocabularyInput = () => {
       showNotification('Vocabulary item updated successfully!');
     }
     
-    // Reset form
+    //reset form
     setWord('');
     setDefinition('');
   };

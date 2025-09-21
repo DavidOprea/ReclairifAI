@@ -16,7 +16,7 @@ const Notification = ({ message }) => {
   
   if (!message) return null;
   
-  // Create portal manually since we're not using ReactDOM
+  //create portal manually since we're not using ReactDOM
   const notificationElement = document.getElementById('notification');
   if (!notificationElement) return null;
   

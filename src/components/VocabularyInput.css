@@ -275,20 +275,20 @@ footer {
     opacity: 1;
 }
 
-/* Form focus states */
+/*Form focus states*/
 .input-group input:focus, 
 .input-group textarea:focus {
     border-color: #ffa51f;
     box-shadow: 0 0 0 3px rgba(207, 185, 145, 0.3);
 }
 
-/* Button focus states */
+/*Button focus states*/
 button:focus {
     outline: none;
     box-shadow: 0 0 0 3px rgba(207, 185, 145, 0.5);
 }
 
-/* Animation for buttons */
+/*Animation for buttons*/
 @keyframes purdue-gold-glow {
     0% { box-shadow: 0 0 5px rgba(207, 185, 145, 0.5); }
     50% { box-shadow: 0 0 20px rgba(207, 185, 145, 0.8); }
@@ -299,7 +299,7 @@ button:focus {
     animation: purdue-gold-glow 2s infinite;
 }
 
-/* Responsive adjustments */
+/*Responsive adjustments*/
 @media (max-width: 600px) {
     .container {
         border-radius: 0;
@@ -318,7 +318,7 @@ button:focus {
     }
 }
 
-/* Loading animation for submit button */
+/*Loading animation for submit button*/
 .btn-primary.loading {
     position: relative;
     color: transparent;
@@ -338,7 +338,7 @@ button:focus {
     animation: spin 1s ease-in-out infinite;
 }
 
-/* Deck Management Styles */
+/*Deck Management Styles*/
 .deck-management {
     margin: 25px 0;
     padding: 20px;
