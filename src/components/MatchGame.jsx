@@ -3,15 +3,17 @@ import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import './MatchGame.css';
 
 //import sfx
-const basePath = window.location.hostname.includes('github.io') 
-  ? '/ReclairifAI/' 
-  : '/';
+import selectSoundFile from '../assets/sounds/select.mp3';
+import correctSoundFile from '../assets/sounds/correct.mp3';
+import incorrectSoundFile from '../assets/sounds/incorrect.mp3';
+import finishedSoundFile from '../assets/sounds/finished.mp3';
+import confettiSoundFile from '../assets/sounds/confetti.mp3';
 
-const selectSound = new Audio(`${basePath}sounds/select.mp3`);
-const correctSound = new Audio(`${basePath}sounds/correct.mp3`);
-const incorrectSound = new Audio(`${basePath}sounds/incorrect.mp3`);
-const finishedSound = new Audio(`${basePath}sounds/finished.mp3`);
-const confettiSound = new Audio(`${basePath}sounds/confetti.mp3`);
+const selectSound = new Audio(selectSoundFile);
+const correctSound = new Audio(correctSoundFile);
+const incorrectSound = new Audio(incorrectSoundFile);
+const finishedSound = new Audio(finishedSoundFile);
+const confettiSound = new Audio(confettiSoundFile);
 
 const MatchGame = () => {
   const { deckId } = useParams(); //get deck id from url

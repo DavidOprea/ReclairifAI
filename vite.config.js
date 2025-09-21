@@ -7,8 +7,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
-    // Add this to ensure public files are copied:
-    copyPublicDir: true
-  },
-  publicDir: 'public' // Ensure this is set
+    // This ensures assets are properly handled
+    assetsInclude: ['**/*.mp3']
+  }
 })
