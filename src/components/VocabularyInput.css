@@ -1,4 +1,4 @@
-/* VocabularyInput.css - Purdue University Theme */
+/*css for vocabinput page*/
 * {
     box-sizing: border-box;
     margin: 0;
@@ -27,22 +27,22 @@ body {
 
 header {
     background: #000000;
-    color: #CFB991;
+    color: #ffa51f;
     padding: 25px;
     text-align: center;
-    border-bottom: 5px solid #CFB991;
+    border-bottom: 5px solid #ffa51f;
 }
 
 h1 {
     font-size: 2.2rem;
     margin-bottom: 10px;
-    color: #CFB991;
+    color: #ffa51f;
 }
 
 .subtitle {
     font-size: 1.1rem;
     opacity: 0.9;
-    color: #CFB991;
+    color: #ffa51f;
     margin: 0 auto;
     padding-top: 1rem;
 }
@@ -58,7 +58,7 @@ h1 {
     padding: 20px;
     border-radius: 10px;
     margin-bottom: 25px;
-    border-left: 4px solid #CFB991;
+    border-left: 4px solid #ffa51f;
 }
 
 .instructions h3 {
@@ -120,7 +120,7 @@ h1 {
 
 .input-group input:focus, .input-group textarea:focus {
     outline: none;
-    border-color: #CFB991;
+    border-color: #ffa51f;
     box-shadow: 0 0 0 2px rgba(207, 185, 145, 0.2);
 }
 
@@ -147,12 +147,12 @@ button {
 
 .btn-primary {
     background: #000000;
-    color: #CFB991;
-    border: 2px solid #CFB991;
+    color: #ffa51f;
+    border: 2px solid #ffa51f;
 }
 
 .btn-primary:hover {
-    background: #CFB991;
+    background: #ffa51f;
     color: #000000;
     transform: translateY(-2px);
 }
@@ -160,11 +160,11 @@ button {
 .btn-secondary {
     background: #FFF8E1;
     color: #000000;
-    border: 2px solid #CFB991;
+    border: 2px solid #ffa51f;
 }
 
 .btn-secondary:hover {
-    background: #CFB991;
+    background: #ffa51f;
     color: #000000;
 }
 
@@ -176,7 +176,7 @@ button {
     margin-bottom: 20px;
     color: #000000;
     padding-bottom: 10px;
-    border-bottom: 2px solid #CFB991;
+    border-bottom: 2px solid #ffa51f;
 }
 
 .vocab-item {
@@ -188,7 +188,7 @@ button {
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-    border-left: 4px solid #CFB991;
+    border-left: 4px solid #ffa51f;
 }
 
 .vocab-content {
@@ -225,7 +225,7 @@ button {
 }
 
 .btn-icon:hover {
-    background: #CFB991;
+    background: #ffa51f;
     color: #000000;
 }
 
@@ -238,7 +238,7 @@ button {
 .empty-state i {
     font-size: 3rem;
     margin-bottom: 15px;
-    color: #CFB991;
+    color: #ffa51f;
 }
 
 .empty-state p {
@@ -249,7 +249,7 @@ button {
 footer {
     text-align: center;
     padding: 20px;
-    color: #CFB991;
+    color: #ffa51f;
     background: #000000;
     font-size: 0.9rem;
 }
@@ -261,13 +261,13 @@ footer {
     padding: 15px 25px;
     border-radius: 8px;
     background: #000000;
-    color: #CFB991;
+    color: #ffa51f;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     transform: translateX(100%);
     opacity: 0;
     transition: all 0.3s ease;
     z-index: 1000;
-    border: 2px solid #CFB991;
+    border: 2px solid #ffa51f;
 }
 
 .notification.show {
@@ -278,7 +278,7 @@ footer {
 /* Form focus states */
 .input-group input:focus, 
 .input-group textarea:focus {
-    border-color: #CFB991;
+    border-color: #ffa51f;
     box-shadow: 0 0 0 3px rgba(207, 185, 145, 0.3);
 }
 
@@ -334,7 +334,7 @@ button:focus {
     margin: -10px 0 0 -10px;
     border: 3px solid rgba(207, 185, 145, 0.3);
     border-radius: 50%;
-    border-top-color: #CFB991;
+    border-top-color: #ffa51f;
     animation: spin 1s ease-in-out infinite;
 }
 
@@ -344,7 +344,7 @@ button:focus {
     padding: 20px;
     background: #FFF8E1;
     border-radius: 10px;
-    border-left: 4px solid #CFB991;
+    border-left: 4px solid #ffa51f;
 }
 
 .deck-save-form {
@@ -363,7 +363,8 @@ button:focus {
 .saved-decks {
     margin-top: 30px;
     padding-top: 20px;
-    border-top: 2px solid #CFB991;
+    border-top: 2px solid #ffa51f;
+    color:#ffa51f
 }
 
 .decks-list {
@@ -378,7 +379,7 @@ button:focus {
     margin-bottom: 10px;
     background: #FFF8E1;
     border-radius: 8px;
-    border-left: 4px solid #CFB991;
+    border-left: 4px solid #ffa51f;
 }
 
 .deck-info h4 {

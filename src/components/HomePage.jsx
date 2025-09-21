@@ -19,12 +19,16 @@ function HomePage() {
       </div>
 
       <div className="main-content">
-        <h1 className="title">ReclarifAI</h1>
+         <img 
+            src="https://media.discordapp.net/attachments/1418721726623256640/1419113748651704350/ReclarifAI.png?ex=68d0942b&is=68cf42ab&hm=50626b3b7e2de1e85ac10a9b867a80d199cca7b52986146b2b6b9e496a4d02e7&=&format=webp&quality=lossless&width=1369&height=249" 
+            alt="Title Logo"
+            className="title-logo"
+          />
         <p className="subtitle">Create, match, and learn new vocabulary words with ease</p>
         
         <div className="logo-container">
           <img 
-            src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=500&q=80" 
+            src="https://media.discordapp.net/attachments/1418721726623256640/1419113748974534770/Group_2.png?ex=68d0942b&is=68cf42ab&hm=1201f62b34b5c38de0e8ddc52f7041074737a3c1dd960cfdc7c5cefec76cc1ef&=&format=webp&quality=lossless&width=455&height=395" 
             alt="App Logo"
             className="app-logo"
           />

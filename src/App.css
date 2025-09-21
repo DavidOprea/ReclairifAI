@@ -2,7 +2,7 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
 :root {
-  --gold-primary: #D4AF37;
+  --gold-primary: #FFA51F;
   --gold-secondary: #FFD700;
   --gold-accent: #F9A602;
   --dark-bg: #0A0A0A;
@@ -95,16 +95,12 @@ body {
   background: linear-gradient(90deg, var(--gold-primary), var(--gold-secondary), var(--gold-accent));
 }
 
-.title {
-  font-size: 2.8rem;
-  font-weight: 700;
-  background: linear-gradient(90deg, var(--gold-primary), var(--gold-secondary));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  margin: 0.5rem 0;
-  padding-bottom: 1rem;
-  letter-spacing: -0.5px;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+.title-logo {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /*filter: sepia(100%) hue-rotate(-10deg) saturate(500%) brightness(0.9);*/
 }
 
 .subtitle {
@@ -122,10 +118,7 @@ body {
   overflow: hidden;
   width: 160px;
   height: 160px;
-  box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
   transition: var(--transition);
-  border: 3px solid var(--gold-primary);
-  background: #000;
 }
 
 .logo-container:hover {

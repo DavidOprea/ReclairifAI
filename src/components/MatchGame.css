@@ -71,7 +71,7 @@ body {
   justify-content: space-between;
   align-items: center;
   background: #161b22;
-  border-bottom: 2px solid #ffd700;
+  border-bottom: 2px solid #ffa51f;
   position: relative;
   height: 80px;
   flex-shrink: 0;
@@ -79,7 +79,7 @@ body {
 
 .menu-icon {
   font-size: 1.8rem;
-  color: #ffd700;
+  color: #ffa51f;
   cursor: pointer;
   padding: 8px;
   border-radius: 6px;
@@ -97,7 +97,7 @@ body {
 .timer-display {
   font-size: 1.4rem;
   font-weight: 600;
-  color: #ffd700;
+  color: #ffa51f;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -119,10 +119,10 @@ body {
 
 .mute-btn {
   padding: 10px;
-  border: 2px solid #ffd700;
+  border: 2px solid #ffa51f;
   border-radius: 8px;
   background: transparent;
-  color: #ffd700;
+  color: #ffa51f;
   font-size: 1.2rem;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -134,7 +134,7 @@ body {
 }
 
 .mute-btn:hover {
-  background: #ffd700;
+  background: #ffa51f;
   color: #000;
   transform: translateY(-2px);
   box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
@@ -142,10 +142,10 @@ body {
 
 .new-game-btn {
   padding: 12px 24px;
-  border: 2px solid #ffd700;
+  border: 2px solid #ffa51f;
   border-radius: 8px;
   background: transparent;
-  color: #ffd700;
+  color: #ffa51f;
   font-weight: 600;
   font-size: 1rem;
   cursor: pointer;
@@ -153,7 +153,7 @@ body {
 }
 
 .new-game-btn:hover {
-  background: #ffd700;
+  background: #ffa51f;
   color: #000;
   transform: translateY(-2px);
   box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
@@ -204,13 +204,13 @@ body {
 }
 
 .card:hover {
-  border-color: #ffd700;
+  border-color: #ffa51f;
   transform: translateY(-2px);
   box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
 }
 
 .card.selected {
-  border-color: #ffd700;
+  border-color: #ffa51f;
   background: rgba(255, 215, 0, 0.15);
   transform: scale(1.03);
   box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
@@ -252,13 +252,13 @@ body {
   padding: 40px;
   border-radius: 16px;
   text-align: center;
-  border: 2px solid #ffd700;
+  border: 2px solid #ffa51f;
   box-shadow: 0 20px 50px rgba(255, 215, 0, 0.3);
   min-width: 400px;
 }
 
 .completion-content h2 {
-  color: #ffd700;
+  color: #ffa51f;
   margin-bottom: 20px;
   font-size: 2.2rem;
 }
@@ -271,14 +271,14 @@ body {
 }
 
 .best-time {
-  color: #ffd700;
+  color: #ffa51f;
   font-size: 1.2rem;
   margin-bottom: 10px;
   font-weight: 500;
 }
 
 .new-best {
-  color: #ffd700;
+  color: #ffa51f;
   font-size: 1.3rem;
   font-weight: 600;
   margin-bottom: 30px;
@@ -298,10 +298,10 @@ body {
 
 .play-again-btn, .main-menu-btn {
   padding: 14px 28px;
-  border: 2px solid #ffd700;
+  border: 2px solid #ffa51f;
   border-radius: 8px;
   background: transparent;
-  color: #ffd700;
+  color: #ffa51f;
   font-size: 1.1rem;
   font-weight: 600;
   cursor: pointer;
@@ -310,7 +310,7 @@ body {
 }
 
 .play-again-btn:hover, .main-menu-btn:hover {
-  background: #ffd700;
+  background: #ffa51f;
   color: #000;
   transform: translateY(-2px);
   box-shadow: 0 0 25px rgba(255, 215, 0, 0.4);
