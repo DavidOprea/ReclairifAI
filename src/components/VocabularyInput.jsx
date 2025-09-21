@@ -159,7 +159,7 @@ const VocabularyInput = () => {
       <header>
         <button onClick={handleBack} className="back-button">
           <i className="fas fa-arrow-left"></i>
-          &nbsp; Back
+          &nbsp;
         </button>
         <h1>Deck Creator</h1>
         <p className="subheading">Create your vocabulary list for enhanced matching</p>
@@ -252,9 +252,6 @@ const VocabularyInput = () => {
         </div>
     </div>
 )}
-      <footer>
-        <p>ReclairifAI &copy; 2025</p>
-      </footer>
     </div>
   );
 };
