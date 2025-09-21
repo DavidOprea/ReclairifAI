@@ -105,7 +105,7 @@ body {
 }
 
 .subtitle {
-  color: var(--gray);
+  color: var(--dark-text);
   font-size: 1.3rem;
   font-weight: 400;
   text-align: center;
