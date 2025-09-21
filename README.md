@@ -1,12 +1,44 @@
-# React + Vite
+# <img src="https://github.com/DavidOprea/ReclairifAI/blob/master/src/assets/logo.svg"> ReclairifAI
+ReclairifAI is a match game for learning which changes the match definitions with AI, eliminating relying on pattern-recognition to beat the game.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Other match games like Quizlet match eventually devolve into using pattern-recognition, such as memorizing the *shape* of the text instead of the actual meaning/information inside the text. This makes the learning become incredibly inefficient.
 
-Currently, two official plugins are available:
+We fix this by using ChatGPT to change the match text while keeping the core information. This removes pattern-recognition and forces users to learn the material thoroughly in order to beat the game as fast as possible.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation
 
-## Expanding the ESLint configuration
+```
+pip install openai
+pip install Flask
+pip install flask-cors
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Usage
+Get a ChatGPT API key
+
+Open .env and replace YOUR_API_KEY with your key
+
+Navigate into the ReclarifAI folder and run:
+
+```
+python app.py
+```
+
+## Local usage
+
+Get a ChatGPT API key
+
+Open .env and replace YOUR_API_KEY with your key
+
+Have Node.js installed
+
+```
+npm install
+```
+
+To run, use
+
+```
+python app.py
+npm run dev
+```
