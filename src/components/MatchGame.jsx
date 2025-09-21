@@ -58,20 +58,8 @@ const MatchGame = () => {
   };
 
   //get a random subset of vocabulary items (5-10 items)
-  const getRandomVocabularySubset = (vocabulary, minItems = 5, maxItems = 10) => {
-    if (!vocabulary || vocabulary.length === 0) return [];
-    
-    //shuffle the vocabulary array
-    const shuffled = [...vocabulary].sort(() => Math.random() - 0.5);
-    
-    //determine how many items to use (between min and max, but not more than available)
-    const itemCount = Math.min(
-      Math.max(minItems, Math.floor(Math.random() * maxItems) + 1),
-      vocabulary.length
-    );
-    
-    //return the random subset
-    return shuffled.slice(0, itemCount);
+  const getRandomVocabularySubset = (vocabulary) => {
+    return vocabulary; // always return all items
   };
 
   //convert deck data to pairs format
@@ -263,9 +251,15 @@ const MatchGame = () => {
 
   const handleNewGame = () => {
     if (currentDeck) {
-      //get a new random subset of vocabulary for each new game
-      const randomVocabulary = getRandomVocabularySubset(currentDeck.vocabulary);
-      const pairs = convertDeckToPairs(randomVocabulary);
+      const maxPairs = 12; // limit to 12 pairs
+      let vocabularyToUse = currentDeck.vocabulary;
+
+      // pick random 12 if needed
+      if (vocabularyToUse.length > maxPairs) {
+        vocabularyToUse = [...vocabularyToUse].sort(() => Math.random() - 0.5).slice(0, maxPairs);
+      }
+
+      const pairs = convertDeckToPairs(vocabularyToUse);
       initializeGame(pairs);
     }
   };
@@ -277,7 +271,7 @@ const MatchGame = () => {
         <div className="top-controls">
           <button className="back-button" onClick={handleBack}>
             <i className="fas fa-arrow-left"></i>
-            &nbsp; Back to Decks
+            &nbsp;
           </button>
         </div>
         <div className="loading-message">
@@ -314,7 +308,7 @@ const MatchGame = () => {
       <div className="top-controls">
         <button className="back-button" onClick={handleBack}>
           <i className="fas fa-arrow-left"></i>
-          &nbsp; Back to Decks
+          &nbsp;
         </button>
         <div className="timer-display">
           {formatTime(time)}s

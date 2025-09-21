@@ -108,11 +108,13 @@ function DeckSelection() {
     return (
       <div className="app-container">
         <div className="main-content">
-          <div className="deck-selection-header">
+          <div className="back-button-header">
             <button className="back-button" onClick={handleBack}>
               <i className="fas fa-arrow-left"></i>
-              &nbsp; Back
+              &nbsp;
             </button>
+          </div>
+          <div className="deck-selection-header">
             <h2 className="title">Your Flashcard Decks</h2>
             <div style={{width: "100px"}}></div>
           </div>
@@ -131,7 +133,7 @@ function DeckSelection() {
         <div className="deck-selection-header">
           <button className="back-button" onClick={handleBack}>
             <i className="fas fa-arrow-left"></i>
-            &nbsp; Back
+            &nbsp;
           </button>
           <h2 className="title">Your Flashcard Decks</h2>
           <div style={{width: "100px"}}></div>

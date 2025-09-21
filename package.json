@@ -7,13 +7,13 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
-    "preview": "vite preview",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "clean": "rimraf .publish",
+    "predeploy": "npm run clean && npm run build",
+    "deploy": "gh-pages -d dist --dotfiles --no-history"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.13",
+    "openai": "^5.22.0",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-router-dom": "^7.9.1"
@@ -30,6 +30,7 @@
     "gh-pages": "^6.3.0",
     "globals": "^16.4.0",
     "postcss": "^8.5.6",
+    "rimraf": "^6.0.1",
     "tailwindcss": "^4.1.13",
     "vite": "^7.1.6"
   }

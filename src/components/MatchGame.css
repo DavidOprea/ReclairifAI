@@ -32,6 +32,7 @@ body {
   background: #0d1117;
   position: relative;
   overflow: hidden;
+  padding-left: 20px;
 }
 
 .game-header {
@@ -180,8 +181,10 @@ body {
 
 .cards-grid {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  grid-template-rows: repeat(3, minmax(0, 1fr));
+  /* 6 columns now */
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  /* 4 rows now */
+  grid-template-rows: repeat(4, minmax(0, 1fr));
   gap: 20px;
   width: 90%;
   max-width: 1400px;
@@ -196,7 +199,7 @@ body {
   background: #21262d;
   border: 2px solid #30363d;
   border-radius: 12px;
-  padding: 20px;
+  padding: 10px;
   cursor: pointer;
   transition: all 0.2s ease;
   aspect-ratio: 4/3;
@@ -207,8 +210,16 @@ body {
   position: relative;
   overflow: hidden;
   width: 100%;
-  max-width: 280px;
+  max-width: 200px;
   min-height: 120px;
+
+  font-size: 0.75rem; /* about 12px */
+  line-height: 1.1;
+}
+
+.card .card-content {
+  font-size: inherit;      /* inherit the small size */
+  word-break: break-word;  /* wrap long words/definitions */
 }
 
 .card:hover {
