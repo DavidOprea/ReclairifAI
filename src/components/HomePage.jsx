@@ -47,7 +47,7 @@ function HomePage() {
         
         <div className="features">
           <div className="feature">
-            <i className="fas fa-shield-alt"></i>
+            <i className="fas fa-pen"></i>
             <span>Create</span>
           </div>
           <div className="feature">
@@ -55,7 +55,7 @@ function HomePage() {
             <span>Match</span>
           </div>
           <div className="feature">
-            <i className="fas fa-cloud"></i>
+            <i className="fas fa-brain"></i>
             <span>Learn</span>
           </div>
         </div>
