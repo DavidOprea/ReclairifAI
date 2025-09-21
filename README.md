@@ -1,4 +1,4 @@
-# <img src="https://github.com/DavidOprea/ReclairifAI/blob/master/src/assets/logo.svg">
+# <img src="https://github.com/DavidOprea/ReclairifAI/blob/master/src/assets/logo.png">
 
 
 ReclairifAI is a match game for learning which changes the match definitions with AI, eliminating relying on pattern-recognition to beat the game.
