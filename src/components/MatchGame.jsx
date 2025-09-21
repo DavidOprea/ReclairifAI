@@ -329,13 +329,6 @@ const MatchGame = () => {
         </div>
       </div>
 
-      {/*Game Header*/}
-      <div className="game-header">
-        <h1>Match Game</h1>
-        <p className="deck-name">Playing: {currentDeck.name}</p>
-        <p className="deck-info">{cards.length / 2} pairs • From your vocabulary deck</p>
-      </div>
-
       {/*Completion Message*/}
       {gameCompleted && (
         <div className="completion-message">
