@@ -119,10 +119,6 @@ function DeckSelection() {
           
           <div className="no-decks-message">
             <p>No decks found. Please create some decks first!</p>
-            <button className="back-button" onClick={handleBack}>
-              <i className="fas fa-arrow-left"></i>
-              &nbsp; Back to Creator
-            </button>
           </div>
         </div>
       </div>
