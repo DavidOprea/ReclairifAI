@@ -148,7 +148,7 @@ function DeckSelection() {
                 <span className="deck-name">{deck.name}</span>
                 <span className="deck-cards">{deck.vocabulary?.length || 0} cards</span>
                 {isProcessing && processingDeck === deck.id && (
-                  <span className="processing-indicator">🔄 Processing with AI...</span>
+                  <span className="processing-indicator">&nbsp; 🔄 Processing with AI...</span>
                 )}
               </button>
               <button

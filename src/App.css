@@ -327,6 +327,9 @@ body {
 
 .deck-row {
   width: 100%;
+  display: flex;
+  gap: 10px;
+  padding-top: 0px
 }
 
 .deck-button {
@@ -340,8 +343,19 @@ body {
   align-items: center;
   transition: all 0.2s ease;
   color: var(--light);
-  width: 100%; /* Make button fill the entire row */
+  width: 80%; /* Make button fill the entire row */
   text-align: left;
+}
+
+.delete-deck-button {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  border-radius: 8px;
+  padding: 1.2rem 1.5rem;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s ease;
+  color: var(--light);
 }
 
 .deck-button:hover {
