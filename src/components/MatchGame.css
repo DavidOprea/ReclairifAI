@@ -446,56 +446,13 @@ body {
     max-height: 500px;
   }
   
-  /* Cards - Fixed spacing and overflow */
-.card {
-  background: #21262d;
-  border: 2px solid #30363d;
-  border-radius: 12px;
-  padding: 10px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  overflow: hidden;
-  width: 100%;
-  max-width: 250px;
-  min-height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.card-content {
-  font-size: 14px;
-  line-height: 1.3;
-  color: #ffffff;
-  font-weight: 500;
-  width: 100%;
-  word-wrap: break-word;
-  overflow-wrap: break-word;
-  overflow: hidden;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  text-overflow: ellipsis;
-  padding: 0 8px;
-  margin: 0;
-}
-
-.card:hover {
-  border-color: #ffa51f;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(255, 215, 0, 0.2);
-}
-
-.card.selected {
-  border-color: #ffa51f;
-  background: rgba(255, 215, 0, 0.15);
-  transform: scale(1.03);
-  box-shadow: 0 6px 20px rgba(255, 215, 0, 0.3);
-}
-
-.card.matched {
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
-}
+  .card {
+    max-width: 140px;
+    min-height: 80px;
+    padding: 12px;
+  }
+  
+  .card-content {
+    font-size: 0.8rem;
+  }
 }
