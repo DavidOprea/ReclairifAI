@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import './MatchGame.css';
 
 //import sfx
@@ -11,46 +11,27 @@ const confettiSound = new Audio('/sounds/confetti.mp3');
 
 const MatchGame = () => {
   const { deckId } = useParams(); //get deck id from url
+  const location = useLocation(); //get location to access passed state
   const navigate = useNavigate();
   
-  // Sample deck data - in a real app, you'd fetch this based on deckId
-  const deckData = {
-    1: [
-      { word: "Hola", definition: "Hello" },
-      { word: "Adiós", definition: "Goodbye" },
-      { word: "Gracias", definition: "Thank you" },
-      { word: "Por favor", definition: "Please" },
-      { word: "Buenos días", definition: "Good morning" }
-    ],
-    2: [
-      { word: "Cell", definition: "Basic unit of life" },
-      { word: "DNA", definition: "Genetic material" },
-      { word: "Photosynthesis", definition: "Process plants use to make food" },
-      { word: "Mitochondria", definition: "Powerhouse of the cell" },
-      { word: "Ecosystem", definition: "Biological community of interacting organisms" }
-    ],
-    3: [
-      { word: "1776", definition: "Year of American Independence" },
-      { word: "1492", definition: "Columbus discovered America" },
-      { word: "1914", definition: "Start of World War I" },
-      { word: "1789", definition: "French Revolution began" },
-      { word: "1066", definition: "Norman Conquest of England" }
-    ],
-    4: [
-      { word: "Pythagorean Theorem", definition: "a² + b² = c²" },
-      { word: "Quadratic Formula", definition: "x = [-b ± √(b² - 4ac)] / 2a" },
-      { word: "Derivative", definition: "Rate of change of a function" },
-      { word: "Integral", definition: "Area under a curve" },
-      { word: "Probability", definition: "Measure of how likely an event is to occur" }
-    ]
+  // Get the deck data passed from DeckSelection
+  const deckFromState = location.state?.deck;
+  
+  // If no deck was passed, try to get it from localStorage
+  const getDeckFromStorage = () => {
+    try {
+      const savedDecks = localStorage.getItem('vocabularyDecks');
+      if (savedDecks) {
+        const decks = JSON.parse(savedDecks);
+        return decks.find(deck => deck.id === parseInt(deckId)) || null;
+      }
+    } catch (error) {
+      console.error('Error loading deck from storage:', error);
+    }
+    return null;
   };
 
-  // Get the current deck or use default if not found
-  const currentDeck = deckData[deckId] || [
-    { word: "Example", definition: "A representative form or pattern" },
-    { word: "Sample", definition: "A small part representing the whole" },
-    { word: "Test", definition: "A procedure to determine quality or performance" }
-  ];
+  const currentDeck = deckFromState || getDeckFromStorage();
 
   const [cards, setCards] = useState([]);
   const [selectedCards, setSelectedCards] = useState([]);
@@ -70,17 +51,36 @@ const MatchGame = () => {
     navigate('/decks'); // Go back to deck selection
   };
 
+  // Get a random subset of vocabulary items (5-10 items)
+  const getRandomVocabularySubset = (vocabulary, minItems = 5, maxItems = 10) => {
+    if (!vocabulary || vocabulary.length === 0) return [];
+    
+    // Shuffle the vocabulary array
+    const shuffled = [...vocabulary].sort(() => Math.random() - 0.5);
+    
+    // Determine how many items to use (between min and max, but not more than available)
+    const itemCount = Math.min(
+      Math.max(minItems, Math.floor(Math.random() * maxItems) + 1),
+      vocabulary.length
+    );
+    
+    // Return the random subset
+    return shuffled.slice(0, itemCount);
+  };
+
   // Convert deck data to pairs format
-  const convertDeckToPairs = (deck) => {
-    return deck.map(item => ({
+  const convertDeckToPairs = (vocabulary) => {
+    return vocabulary.map(item => ({
       word1: item.word,
       word2: item.definition
     }));
   };
 
   useEffect(() => {
-    if (!isInitialized) {
-      const pairs = convertDeckToPairs(currentDeck);
+    if (!isInitialized && currentDeck) {
+      // Get random subset of vocabulary
+      const randomVocabulary = getRandomVocabularySubset(currentDeck.vocabulary);
+      const pairs = convertDeckToPairs(randomVocabulary);
       initializeGame(pairs);
       setIsInitialized(true);
     }
@@ -256,20 +256,34 @@ const MatchGame = () => {
   };
 
   const handleNewGame = () => {
-    const pairs = convertDeckToPairs(currentDeck);
-    initializeGame(pairs);
+    if (currentDeck) {
+      // Get a new random subset of vocabulary for each new game
+      const randomVocabulary = getRandomVocabularySubset(currentDeck.vocabulary);
+      const pairs = convertDeckToPairs(randomVocabulary);
+      initializeGame(pairs);
+    }
   };
 
-  // Get deck name based on ID
-  const getDeckName = () => {
-    const deckNames = {
-      1: "Spanish Vocabulary",
-      2: "Biology Terms", 
-      3: "History Dates",
-      4: "Math Formulas"
-    };
-    return deckNames[deckId] || `Deck ${deckId}`;
-  };
+  // Show loading state if deck is not available
+  if (!currentDeck) {
+    return (
+      <div className="match-game">
+        <div className="top-controls">
+          <button className="back-button" onClick={handleBack}>
+            <i className="fas fa-arrow-left"></i>
+            &nbsp; Back to Decks
+          </button>
+        </div>
+        <div className="loading-message">
+          <h2>Loading deck...</h2>
+          <p>If this takes too long, the deck may not exist.</p>
+          <button onClick={handleBack} className="back-button">
+            Go Back to Deck Selection
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="match-game" ref={gameRef}>
@@ -294,7 +308,7 @@ const MatchGame = () => {
       <div className="top-controls">
         <button className="back-button" onClick={handleBack}>
           <i className="fas fa-arrow-left"></i>
-         &nbsp; Back to Decks
+          &nbsp; Back to Decks
         </button>
         <div className="timer-display">
           {formatTime(time)}s
@@ -312,7 +326,8 @@ const MatchGame = () => {
       {/* Game Header */}
       <div className="game-header">
         <h1>Match Game</h1>
-        <p className="deck-name">Playing: {getDeckName()}</p>
+        <p className="deck-name">Playing: {currentDeck.name}</p>
+        <p className="deck-info">{cards.length / 2} pairs • From your vocabulary deck</p>
       </div>
 
       {/* Completion Message */}
