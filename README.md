@@ -1,4 +1,6 @@
-# <img src="https://github.com/DavidOprea/ReclairifAI/blob/master/src/assets/logo.svg"> ReclairifAI
+# <img src="https://github.com/DavidOprea/ReclairifAI/blob/master/src/assets/logo.svg">
+
+
 ReclairifAI is a match game for learning which changes the match definitions with AI, eliminating relying on pattern-recognition to beat the game.
 
 Other match games like Quizlet match eventually devolve into using pattern-recognition, such as memorizing the *shape* of the text instead of the actual meaning/information inside the text. This makes the learning become incredibly inefficient.
