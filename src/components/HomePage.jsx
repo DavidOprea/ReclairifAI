@@ -1,4 +1,4 @@
-import {useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import HelpButton from './HelpButton'
 
 function HomePage() {
@@ -10,6 +10,10 @@ function HomePage() {
 
   const handleCreateClick = () => {
     navigate('/create') //nav to VocabularyInput page
+  }
+
+  const handleGitHubClick = () => {
+    window.open('https://github.com/DavidOprea/ReclairifAI', '_blank')
   }
 
   return (
@@ -62,7 +66,10 @@ function HomePage() {
       </div>
       
       <footer>
-        ReclarifAI &copy; 2025 • v1.0.0
+        <span>ReclarifAI &copy; 2025 • v1.0.0</span>
+        <button className="github-icon-button" onClick={handleGitHubClick} title="View on GitHub">
+          <i className="fab fa-github"></i>
+        </button>
       </footer>
     </div>
   )

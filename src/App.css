@@ -35,6 +35,17 @@ body {
   padding: 1rem;
 }
 
+.deck-selection-header {
+  padding-top: 35px;
+}
+
+.delete-deck-button {
+  padding-left: 0px;
+  padding-right: 0px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+
 .app-container {
   width: 100%;
   max-width: 480px;
@@ -327,6 +338,9 @@ body {
 
 .deck-row {
   width: 100%;
+  display: flex;
+  align-items: center;   /* vertically centers them */
+  gap: 10px;             /* space between buttons */
 }
 
 .deck-button {
@@ -352,8 +366,15 @@ body {
 
 .deck-name {
   font-weight: 500;
-  font-size: 1.1rem;
+  font-size: 1rem;
   flex: 1;
+}
+
+#deckName {
+  width: 300px;  /* any px, %, em, or rem value */
+  /* optional extras */
+  padding: 8px;
+  box-sizing: border-box;
 }
 
 .deck-cards {
@@ -420,9 +441,32 @@ body {
 }
 
 footer {
-  text-align: center;
-  margin-top: 1.5rem;
-  color: rgba(212, 175, 55, 0.6);
-  font-size: 0.8rem;
-  background: linear-gradient(135deg, #151515 0%, #1a1a1a 100%);
+  display: flex;
+  align-items: center;
+  padding: 15px 120px;
+  background: rgba(255, 0, 0, 0);
+  color: #8b949e;
+  gap: 20px;
+}
+
+.github-icon-button {
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #30363d;
+  color: #c9d1d9;
+  width: 25px;
+  height: 40px;
+  border-radius: 60%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-size: 17px;
+}
+
+.github-icon-button:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: #8b949e;
+  transform: translateY(-2px) scale(1.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
 }
