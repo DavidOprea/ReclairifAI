@@ -3,11 +3,11 @@ import { useNavigate, useParams, useLocation } from 'react-router-dom';
 import './MatchGame.css';
 
 //import sfx
-const selectSound = new Audio('/sounds/select.mp3');
-const correctSound = new Audio('/sounds/correct.mp3');
-const incorrectSound = new Audio('/sounds/incorrect.mp3');
-const finishedSound = new Audio('/sounds/finished.mp3');
-const confettiSound = new Audio('/sounds/confetti.mp3');
+const selectSound = new Audio('./sounds/select.mp3');
+const correctSound = new Audio('./sounds/correct.mp3');
+const incorrectSound = new Audio('./sounds/incorrect.mp3');
+const finishedSound = new Audio('./sounds/finished.mp3');
+const confettiSound = new Audio('./sounds/confetti.mp3');
 
 const MatchGame = () => {
   const { deckId } = useParams(); //get deck id from url

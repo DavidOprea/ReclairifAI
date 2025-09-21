@@ -202,6 +202,10 @@ def process_vocabulary():
         })
         
     except Exception as e:
+        print(f"❌ ERROR in process_vocabulary: {str(e)}")
+        print(f"Error type: {type(e).__name__}")
+        import traceback
+        traceback.print_exc()  # ← THIS SHOWS THE EXACT ERROR LINE
         return jsonify({'error': str(e)}), 500
 
 def store_processed_deck(data):
